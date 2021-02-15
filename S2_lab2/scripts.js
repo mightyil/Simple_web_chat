@@ -17,7 +17,7 @@ function send_msg()
 }
 
 
-function dialog_refresh()
+/*function dialog_refresh()
 {
   setTimeout(
     refresh() =>
@@ -26,4 +26,4 @@ function dialog_refresh()
     },
     5000
   );
-}
+}*/
