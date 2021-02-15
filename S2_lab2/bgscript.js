@@ -7,8 +7,8 @@
   particles = [],
   properties = {bgColor : 'rgba(17,17,19,1)',
                 particleColor : 'rgba(255,40,40,1)',
-                particleRadius : 2,
-                particleCount : 1,
+                particleRadius : 3,
+                particleCount : 60,
                 particleMaxVelocity : 0.5
                 };
 
@@ -32,8 +32,9 @@
     position()
     {
       console.log(this.x);
-      this.x += this.velosityX;
-      this.y += this.velosityY;
+
+      this.x = Number(this.x) + Number(this.velocityX);
+      this.y = Number(this.y) + Number(this.velocityY);
     }
     reDraw()
     {
