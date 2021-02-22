@@ -11,22 +11,25 @@
     <title>my chat</title>
     <link rel="stylesheet" href="style.css">
   </head>
-  <body>
-    <div class="profile">
-      Вы вошли как <?php echo $_SESSION['username']; ?>
-      <form action="relog.php" method="post">
-        <input type="submit" name="exit" value="Выйти">
-      </form>
+  <body onload="dialog_refresh()">
+    <div class="main">
+      <div class="profile">
+        Вы вошли как <?php echo $_SESSION['username']; ?>
+        <form action="relog.php" method="post">
+          <input type="submit" name="exit" value="Выйти">
+        </form>
+      </div>
+      <div class="chatBox">
+        //отобразим тут сообщения
+      </div>
+      <div class="msgBox">
+        <form class="sendmsg"  method="post">
+          <textarea type="longtext" id="msg" ></textarea><br>
+          <input type="button" name="send" value="Отправить" onclick="send_msg()">
+        </form>
+      </div>
     </div>
-    <div class="chatBox">
-      //отобразим тут сообщения
-    </div>
-    <div class="msgBox">
-      <form class="sendmsg"  method="post">
-        <textarea type="longtext" name="msg" ></textarea>
-        <input type="button" name="send" value="Отправить" onclick="send_msg()">
-      </form>
-    </div>
+  
   <script src="scripts.js"></script>
   </body>
 </html>

@@ -5,11 +5,13 @@
   w = canvas.width = innerWidth,
   h = canvas.height = innerHeight,
   particles = [],
-  properties = {bgColor : 'rgba(17,17,19,1)',
-                particleColor : 'rgba(255,40,40,1)',
+  properties = {bgColor        : 'rgba(17,17,19,1)',
+                particleColor  : 'rgba(255,40,40,1)',
                 particleRadius : 3,
-                particleCount : 60,
-                particleMaxVelocity : 0.5
+                particleCount  : 80,
+                particleMaxVelocity : 1,
+                lineLength          : 120,
+                particleLife        : 10
                 };
 
   document.querySelector('body').appendChild(canvas);
@@ -28,11 +30,12 @@
       this.y = Math.random()*h;
       this.velocityX = Math.random()*(properties.particleMaxVelocity*2) - properties.particleMaxVelocity;
       this.velocityY = Math.random()*(properties.particleMaxVelocity*2) - properties.particleMaxVelocity;
+      this.life = Math.random()*properties.particleLife*60;
     }
     position()
     {
-      console.log(this.x);
-
+      this.x + this.velocityX > w && this.velocityX > 0 || this.x + this.velocityX < 0 ? this.velocityX *= -1 : this.velocityX;
+      this.y + this.velocityY> h && this.velocityY > 0 || this.y + this.velocityY < 0 ? this.velocityY *= -1 : this.velocityY;
       this.x = Number(this.x) + Number(this.velocityX);
       this.y = Number(this.y) + Number(this.velocityY);
     }
@@ -44,6 +47,18 @@
       ctx.fillStyle = properties.particleColor;
       ctx.fill();
     }
+    reCalculateLife()
+    {
+      if(this.life < 1)
+      {
+        this.x = Math.random()*w;
+        this.y = Math.random()*h;
+        this.velocityX = Math.random()*(properties.particleMaxVelocity*2) - properties.particleMaxVelocity;
+        this.velocityY = Math.random()*(properties.particleMaxVelocity*2) - properties.particleMaxVelocity;
+        this.life = Math.random()*properties.particleLife*60;
+      }
+      this.life--;
+    }
   }
 
   function reDrawBackground()
@@ -52,10 +67,38 @@
     ctx.fillRect(0,0,w,h);
   }
 
+  function drawLines()
+  {
+    var x1, y1, x2, y2, length, opacity;
+    for (var i in particles)
+    {
+      for (var j in particles)
+      {
+        x1 = particles[i].x;
+        y1 = particles[i].y;
+        x2 = particles[j].x;
+        y2 = particles[j].y;
+        length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        if (length < properties.lineLength)
+        {
+          opacity = 1 - length/properties.lineLength;
+          ctx.lineWidth = '0.5';
+          ctx.strokeStyle =  'rgba(255,40,40, '+opacity+')';
+          ctx.beginPath();
+          ctx.moveTo(x1, y1);
+          ctx.lineTo(x2, y2);
+          ctx.closePath();
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
   function reDrawParticles()
   {
     for(var i in particles)
     {
+      particles[i].reCalculateLife();
       particles[i].position();
       particles[i].reDraw();
     }
@@ -65,6 +108,7 @@
   {
     reDrawBackground();
     reDrawParticles();
+    drawLines();
     requestAnimationFrame(loop);
   }
 
