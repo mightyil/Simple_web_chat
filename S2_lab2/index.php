@@ -25,7 +25,7 @@
       <div class="msgBox">
         <form class="sendmsg"  method="post">
           <textarea type="longtext" id="msg" ></textarea><br>
-          <input type="button" name="send" value="Отправить" onclick="send_msg(),output_dialog">
+          <input type="button" name="send" value="Отправить" onclick="send_msg(),output_dialog()">
         </form>
       </div>
     </div>

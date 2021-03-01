@@ -39,7 +39,8 @@ function output_dialog()
             chatBox.append(msg);
           }
         );
-    }
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
   }
 
   request.open('POST','serv_refresh.php',true);

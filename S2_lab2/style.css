@@ -7,6 +7,7 @@ body
   overflow: hidden;
   background: rgb(17,17,19);
   color: white;
+  justify-content: center;
 }
 
 canvas
@@ -20,12 +21,41 @@ canvas
 
 .main
 {
-  position:absolute;
-  margin-left: 20%;
   border: 3px solid rgba(255,40,40,0.5);
   width: 500px;
-  height: 500px;
+  height: 700px;
   background: rgba(17,17,19,0.8);
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  top: 10%;
+  align-items: center;
+}
+
+.login_plate
+{
+  border: 3px solid rgba(255,40,40,0.5);
+  width: 300px;
+  height: 30px;
+  background: rgba(17,17,19,0.8);
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  top: 45%;
+  align-items: center;
+  justify-content: center;
+}
+
+input[name = 'username']
+{
+  width: 60%;
+  margin-left: 2%;
+}
+
+input[name = 'submit']
+{
+  width: 30%;
+  margin-left: 2%;
 }
 
 .profile
@@ -41,18 +71,9 @@ canvas
   overflow-y: scroll;
   background-color: white;
   color: black;
-  width: 450px;
-  height: 300px;
-  margin-left: 25px;
-  margin-top: 5px;
-}
-
-.msgBox
-{
-  width: 450px;
-  height: 80px;
-  margin-left: 25px;
-  margin-top: 5px;
+  width: 452px;
+  height: 470px;
+  margin-top: 7px;
 }
 
 textarea
@@ -61,12 +82,14 @@ textarea
   background-color: white;
   color: black;
   width: 450px;
-  height: 50px;
+  height: 100px ;
+  margin-top: 7px;
 }
 
 input[name = 'send']
 {
   width: 100px;
-  margin-left: 200px;
   margin-top: 5px;
+  margin-left: 200px;
+
 }
