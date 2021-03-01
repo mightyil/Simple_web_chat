@@ -25,8 +25,20 @@ function output_dialog()
   {
     if(request.readyState == 4)
     {
-      //ответ в случае успешной отправки
-      console.log(request.responseText);
+        var str = request.responseText;
+        var ans = JSON.parse(str);
+        var chatBox = document.getElementById('chatBox');
+        chatBox.innerHTML = '';
+        ans.forEach(row =>
+          {
+            var msg = document.createElement('div');
+            msg.className = "mesage";
+            msg.innerHTML = "<p class ='user'>" + row.username + "</p>" +
+                            "<p class = 'msgText'>" + row.mesage + "</p>" +
+                            "<p class = 'date'>" + row.send_date + "</p>";
+            chatBox.append(msg);
+          }
+        );
     }
   }
 

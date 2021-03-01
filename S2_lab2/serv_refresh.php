@@ -11,7 +11,6 @@
   }
   else
   {
-      print("Соединение установлено успешно");
       mysqli_set_charset($link,"utf8");
   }
 
@@ -37,5 +36,8 @@
     print('При выполнении запроса произошла ошибка'.mysqli_error($link));
   }
   $topRows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-  echo $topRows;
+  mysqli_free_result($result);
+  $json = json_encode($topRows);
+  echo $json;
+
 ?>

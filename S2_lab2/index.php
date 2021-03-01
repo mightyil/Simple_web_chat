@@ -11,7 +11,7 @@
     <title>my chat</title>
     <link rel="stylesheet" href="style.css">
   </head>
-  <body onload="dialog_refresh()">
+  <body onload="output_dialog(),dialog_refresh()">
     <div class="main">
       <div class="profile">
         Вы вошли как <?php echo $_SESSION['username']; ?>
@@ -19,17 +19,17 @@
           <input type="submit" name="exit" value="Выйти">
         </form>
       </div>
-      <div class="chatBox">
-        //отобразим тут сообщения
+      <div class="chatBox" id="chatBox">
+        <!-- сообщения выводим тут -->
       </div>
       <div class="msgBox">
         <form class="sendmsg"  method="post">
           <textarea type="longtext" id="msg" ></textarea><br>
-          <input type="button" name="send" value="Отправить" onclick="send_msg()">
+          <input type="button" name="send" value="Отправить" onclick="send_msg(),output_dialog">
         </form>
       </div>
     </div>
-  
+  <script src="bgscript.js"></script>
   <script src="scripts.js"></script>
   </body>
 </html>
